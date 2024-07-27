@@ -1,0 +1,32 @@
+extends layout.pug
+
+block content
+  style(type="text/css").
+    body {
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+  if qrCode
+    .container.mt-1
+      .row
+        .col-md-12.text-center
+          h3 Scan QR Code Menggunakan HP Anda
+          img(src=`data:image;base64, ${qrCode}`)
+  h5.my-4.text-center Atau
+
+  .container
+    ol.list-group.list-group-numbered.text-center
+      li.list-group-item Salin kode unik ini: <strong>#{userCode}</strong>
+      li.list-group-item Pergi ke laman website berikut:  #[a(href=verificationUri target='_blank') #{verificationUri}]
+
+
+  .container.mt-5
+    .row
+      .col-md-12.text-center
+        p Upon successful completion, the user has authenticated, and the device has been authorized. You can switch back to this tab to verify the authenticated user's info.
